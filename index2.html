@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Meme & Vibe Check! 🤪</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px 25px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            max-width: 450px;
+            width: 90%;
+            border: 4px solid #ff6b6b;
+            position: relative;
+        }
+
+        .emoji-header {
+            font-size: 65px;
+            margin-bottom: 10px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-12px); }
+        }
+
+        h1 {
+            color: #d63031;
+            font-size: 22px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 90px;
+            position: relative;
+        }
+
+        button {
+            padding: 14px 28px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        .btn-yes {
+            background-color: #00b894;
+            color: white;
+            z-index: 2;
+        }
+
+        .btn-yes:hover {
+            background-color: #00875a;
+        }
+
+        .btn-no {
+            background-color: #d63031;
+            color: white;
+            z-index: 2;
+        }
+
+        .darija-text {
+            color: #6c5ce7;
+            font-size: 16px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .mikami-box {
+            background: #ffeaa7;
+            border: 2px dashed #fdcb6e;
+            padding: 20px 15px;
+            border-radius: 20px;
+            margin-top: 15px;
+            color: #d63031;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .napoli-btn-no {
+            background-color: #d63031;
+            color: white;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="card">
+        <div class="progress-bar" id="stepText">Level 1/10 🤡</div>
+        <div class="emoji-header" id="emoji">🤡✨</div>
+        <h1 id="question">Are you a normal human being today?<br><span style="font-size:15px; color:#555;">(واش بعقلك اليوم ولا كالعادة؟)</span></h1>
+        
+        <div class="btn-container">
+            <button class="btn-yes" id="yesBtn" onclick="userSaidYes()">Ah (أه) 😇</button>
+            <button class="btn-no" id="noBtn" onmouseover="dodgeNo()" onclick="dodgeNo()">La (لا) 🤪</button>
+        </div>
+
+        <p class="darija-text" id="subtext">Try pressing NO/La if you dare... 😏</p>
+    </div>
+
+    <script>
+        const stages = [
+            {
+                q: "Are you SURE you are normal? 🤨<br><span style='font-size:15px; color:#555;'>(واش كاين شي حد عاقل كينقز فـ السيتات؟)</span>",
+                emoji: "🧐❓",
+                subtext: "Stop chasing La, it hates you! 🏃‍♂️💨"
+            },
+            {
+                q: "Did you drink water today or just vibes? 🌊<br><span style='font-size:15px; color:#555;'>(واش شربتي الماء ولا غير عايش بالهوى؟)</span>",
+                emoji: "🌵💧",
+                subtext: "واش كتقلب على الصداع؟ Press Ah! 🥑"
+            },
+            {
+                q: "Be honest... do you talk to yourself? 🗣️<br><span style='font-size:15px; color:#555;'>(واش كتهضر مع راسك فـ المريا؟)</span>",
+                emoji: "🪞😳",
+                subtext: "Bro... the button is literally running away 💀"
+            },
+            {
+                q: "404: Sanity Not Found! 🤖<br><span style='font-size:15px; color:#555;'>(العقل غير موجود، حاول مجدداً)</span>",
+                emoji: "👾🔥",
+                subtext: "غير برك(ي) على Ah وهنينا! 😭"
+            },
+            {
+                q: "Why are you still trying to click La? 😂<br><span style='font-size:15px; color:#555;'>(علاش باقي كتحاول؟ راك غادي تعيا!)</span>",
+                emoji: "🏃‍♀️💨",
+                subtext: "La is faster than your Wi-Fi! ⚡"
+            },
+            {
+                q: "Okay, last chance... Are you crazy? 🤪<br><span style='font-size:15px; color:#555;'>(صافي اعترف، واش حمق(ة)؟)</span>",
+                emoji: "🤪💥",
+                subtext: "Press Ah to accept your fate! 🤝"
+            },
+            {
+                q: "You have 0.001% Patience left! ⏳<br><span style='font-size:15px; color:#555;'>(الصبر سالا، غير استسلم!)</span>",
+                emoji: "💣💥",
+                subtext: "Ah is getting BIGGER for a reason! 👀"
+            },
+            {
+                q: "Give up already! Just click Ah! 🏳️<br><span style='font-size:15px; color:#555;'>(رفعي الراية البيضاء وبركي على Ah!)</span>",
+                emoji: "🏳️😭",
+                subtext: "System overload... Press Ah! 💻"
+            },
+            {
+                q: "FINAL LEVEL: Press Ah or be stuck forever! 🔒<br><span style='font-size:15px; color:#555;'>(المرحلة الأخيرة: يا تسلّم يا تبقى حاصل هنا!)</span>",
+                emoji: "👑🔥",
+                subtext: "It's literally the only way out! 🚪"
+            }
+        ];
+
+        let count = 0;
+        let yesScale = 1;
+
+        function dodgeNo() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            const subtext = document.getElementById('subtext');
+            const question = document.getElementById('question');
+            const emoji = document.getElementById('emoji');
+            const stepText = document.getElementById('stepText');
+
+            noBtn.style.position = 'fixed';
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+
+            yesScale += 0.2;
+            yesBtn.style.transform = `scale(${yesScale})`;
+
+            if (count < stages.length) {
+                stepText.innerText = `Level ${count + 2}/10 🤡`;
+                question.innerHTML = stages[count].q;
+                emoji.innerText = stages[count].emoji;
+                subtext.innerHTML = stages[count].subtext;
+            } else {
+                stepText.innerText = "Level 10/10 🏆 (IMPOSSIBLE TO PRESS LA)";
+                subtext.innerText = "غير برك على Ah وصافي هني راسك 😭❤️";
+            }
+
+            count++;
+        }
+
+        // واجهة الطنز + الواجهة الجديدة ديال Napoli
+        function userSaidYes() {
+            const card = document.getElementById('card');
+            card.innerHTML = `
+                <div class="emoji-header">📸🤨</div>
+                <h1 style="color: #6c5ce7;">LIES! 100% CAP! 😂</h1>
+                <p style="font-size: 16px; color: #2d3436; margin-bottom: 10px;">
+                    Nobody is normal in this generation! 💀<br>
+                    <b>شكون كادب عليك وقايل ليك راك عاقل؟ 🥑✨</b>
+                </p>
+                
+                <div class="mikami-box">
+                    <div style="font-size:20px; color:#d63031; margin-bottom:10px;">Question 2: ⚽️🔥</div>
+                    <b>Wach Napoli Zam*? ⚽️🤣</b><br>
+                    <span style="font-size:13px; color:#636e72;">(جاوب بصراحة... 😏)</span>
+
+                    <div class="btn-container" style="margin-top:15px;">
+                        <button class="btn-yes" id="napoliAhBtn" onclick="finalScreen()">Ah (أه) 💯</button>
+                        <button class="napoli-btn-no" id="napoliLaBtn" onmouseover="dodgeNapoliLa()" onclick="dodgeNapoliLa()">La (لا) 🤡</button>
+                    </div>
+                </div>
+
+                <p class="darija-text" id="napoliSubtext">Choose wisely! 👀</p>
+            `;
+        }
+
+        // تحريك زر La فـ واجهة Napoli
+        let napoliAhScale = 1;
+        const napoliTexts = [
+            "راه أه بسيف عليك! 🤣",
+            "Napoli 100% YES, stop cap! 🧢",
+            "زر La كيهرب تاني حيت الجواب هو Ah 💀",
+            "غير برك على Ah وهنينا! ⚽️🔥"
+        ];
+        let napoliCount = 0;
+
+        function dodgeNapoliLa() {
+            const laBtn = document.getElementById('napoliLaBtn');
+            const ahBtn = document.getElementById('napoliAhBtn');
+            const subtext = document.getElementById('napoliSubtext');
+
+            laBtn.style.position = 'fixed';
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+            laBtn.style.left = x + 'px';
+            laBtn.style.top = y + 'px';
+
+            napoliAhScale += 0.25;
+            ahBtn.style.transform = `scale(${napoliAhScale})`;
+
+            subtext.innerText = napoliTexts[napoliCount % napoliTexts.length];
+            napoliCount++;
+        }
+
+        // الواجهة الأخيرة
+        function finalScreen() {
+            const card = document.getElementById('card');
+            card.innerHTML = `
+                <div class="emoji-header">💋👩‍❤️‍👨✨</div>
+                <h1 style="color: #c9184a; font-size: 28px;">MUA AAH! 😘💋</h1>
+                <p style="font-size: 18px; color: #ff4d6d; font-weight: bold; margin-bottom: 15px;">
+                    حنا متصالحين ومعترفين دابا 💖🌸
+                </p>
+                <div style="font-size: 18px; color: #d63031; font-weight: bold;">
+                    Do you love Mikami? 🥺👉👈💖<br>
+                    <span style="font-size: 15px; color: #6c5ce7;">(ضروري تكون كاتبغيه دابا 😜)</span>
+                </div>
+                <div style="font-size: 40px; margin-top: 15px;">🤣🤌💖🔥</div>
+            `;
+        }
+    </script>
+</body>
+</html>
