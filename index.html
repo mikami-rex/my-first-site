@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>واش نتصالحو؟ 🥺🌸</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe6e9 0%, #ffb6c1 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ورود وقلوب كيطيحو فـ الخلفية */
+        .flower {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            animation: fall linear infinite;
+            z-index: 1;
+            user-select: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+            }
+        }
+
+        /* الكارت الرئيسية */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 2px solid #ffccd5;
+            transition: all 0.3s ease;
+        }
+
+        .emoji-header {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 26px;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            min-height: 80px;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s, font-size 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-yes {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        .btn-yes:hover {
+            background-color: #ff0054;
+            transform: scale(1.05);
+        }
+
+        .btn-no {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-no:hover {
+            background-color: #495057;
+        }
+
+        /* صفحة الصلح */
+        .success-screen {
+            display: none;
+        }
+
+        .kiss-text {
+            font-size: 32px;
+            color: #c9184a;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .sub-text {
+            font-size: 20px;
+            color: #ff4d6d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الخلفية المتحركة -->
+    <div id="flowers-container"></div>
+
+    <!-- الكارت ديال الأسئلة -->
+    <div class="card" id="mainCard">
+        <div class="emoji-header" id="emoji">🥺🌹</div>
+        <h1 id="questionText">واش بغيتي نتصالحو؟ 🥺👉👈</h1>
+        <div class="btn-container">
+            <button class="btn-yes" id="yesBtn" onclick="reconcile()">أه 💖</button>
+            <button class="btn-no" id="noBtn" onclick="nextQuestion()">لا 💔</button>
+        </div>
+    </div>
+
+    <!-- كارت النجاح (ملي تضغط أه) -->
+    <div class="card success-screen" id="successCard">
+        <div class="emoji-header">💋👩‍❤️‍👨✨</div>
+        <div class="kiss-text">مواااح! 😘💋</div>
+        <div class="sub-text">حنا متصالحين دابا 💖🌸</div>
+    </div>
+
+    <script>
+        // الأسئلة والإيموجيات اللي كيتغيرو ملي تضغط "لا"
+        const questions = [
+            { text: "واش متأكدة؟ 🥺💔", emoji: "😭🌸" },
+            { text: "فكري مزيان... بليز؟ 🥺✨", emoji: "🥺👉👈" },
+            { text: "باقي مصممة على لا؟ 😭🌹", emoji: "💔🥀" },
+            { text: "عفاك صافي بركي على أه 🥺💖", emoji: "🥺✨" },
+            { text: "ماعندكش خيار آخر من غير أه 😉❤️", emoji: "😜💕" }
+        ];
+
+        let currentQuestion = 0;
+        let yesSize = 18; // قياس الخط ديال زر أه
+
+        function nextQuestion() {
+            const questionText = document.getElementById('questionText');
+            const emoji = document.getElementById('emoji');
+            const yesBtn = document.getElementById('yesBtn');
+
+            // تغيير السؤال والإيموجي
+            if (currentQuestion < questions.length) {
+                questionText.innerText = questions[currentQuestion].text;
+                emoji.innerText = questions[currentQuestion].emoji;
+                currentQuestion++;
+            } else {
+                questionText.innerText = "غير بركي على أه وهنينا 🥺❤️";
+            }
+
+            // تكبير زر "أه" كل مرة كتضغط "لا"
+            yesSize += 8;
+            yesBtn.style.fontSize = yesSize + 'px';
+            yesBtn.style.padding = (12 + (yesSize - 18) / 2) + 'px ' + (28 + (yesSize - 18)) + 'px';
+        }
+
+        function reconcile() {
+            document.getElementById('mainCard').style.display = 'none';
+            document.getElementById('successCard').style.display = 'block';
+            createHeartExplosion();
+        }
+
+        // إنشاء ورود كيطيحو فـ الخلفية
+        const flowersContainer = document.getElementById('flowers-container');
+        const flowerIcons = ['🌹', '🌸', '🌺', '🌷', '✨', '💖'];
+
+        for (let i = 0; i < 30; i++) {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.innerText = flowerIcons[Math.floor(Math.random() * flowerIcons.length)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            flower.style.animationDelay = Math.random() * 5 + 's';
+            flowersContainer.appendChild(flower);
+        }
+    </script>
+</body>
+</html>
