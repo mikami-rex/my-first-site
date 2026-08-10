@@ -3,287 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Meme & Vibe Check! 🤪</title>
+    <title>Biometric DNA Analysis ⚡ MIKAMI</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif;
+            font-family: 'Cinzel', 'Courier New', Courier, monospace;
+            user-select: none;
         }
 
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
-            height: 100vh;
+            background: #09090e;
+            background-image: radial-gradient(circle at center, #1a0826 0%, #050508 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
             text-align: center;
+            padding: 20px 10px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 35px 25px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            max-width: 450px;
-            width: 90%;
-            border: 4px solid #ff6b6b;
+        /* Freedom Core & Gothic Glass Container */
+        .glass-card {
+            background: rgba(18, 10, 26, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid #8a2be2;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3), inset 0 0 15px rgba(255, 0, 127, 0.2);
+            padding: 35px 20px;
+            border-radius: 25px;
+            max-width: 480px;
+            width: 95%;
             position: relative;
-        }
-
-        .emoji-header {
-            font-size: 65px;
-            margin-bottom: 10px;
-            animation: bounce 1s infinite alternate;
-        }
-
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-12px); }
+            transition: all 0.5s ease;
         }
 
         h1 {
-            color: #d63031;
-            font-size: 22px;
-            margin-bottom: 20px;
-            line-height: 1.4;
+            font-size: 19px;
+            color: #ff007f;
+            text-shadow: 0 0 10px #ff007f;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .btn-container {
+        p.sub {
+            font-size: 12px;
+            color: #a0a0c0;
+            margin-bottom: 25px;
+        }
+
+        /* Fingerprint Button */
+        .fingerprint-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            min-height: 90px;
-            position: relative;
         }
 
-        button {
-            padding: 14px 28px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
+        .fingerprint-btn {
+            width: 100px;
+            height: 100px;
+            background: #12051d;
+            border: 2px solid #ff007f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
             cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            transition: transform 0.1s, background-color 0.2s;
-        }
-
-        .btn-yes {
-            background-color: #00b894;
-            color: white;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            outline: none;
+            position: relative;
             z-index: 2;
         }
 
-        .btn-yes:hover {
-            background-color: #00875a;
+        .fingerprint-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 35px rgba(255, 0, 127, 0.8);
         }
 
-        .btn-no {
-            background-color: #d63031;
-            color: white;
-            z-index: 2;
+        /* Circular Progress Ring */
+        .ring {
+            position: absolute;
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: #8a2be2;
+            border-right-color: #ff007f;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .darija-text {
-            color: #6c5ce7;
-            font-size: 16px;
-            margin-top: 15px;
+        .holding .ring {
+            opacity: 1;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .instruction-text {
+            font-size: 13px;
+            color: #ff007f;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .instruction-text span {
+            display: block;
+            color: #8a2be2;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* Professional DNA Table */
+        .result-box {
+            display: none;
+            animation: fadeIn 0.8s forwards;
+        }
+
+        .dna-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+            background: rgba(10, 5, 20, 0.6);
+            border: 1px solid #8a2be2;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .dna-table th, .dna-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .dna-table th {
+            background: rgba(138, 43, 226, 0.3);
+            color: #ff007f;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .dna-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .final-row {
+            background: rgba(255, 0, 60, 0.2);
             font-weight: bold;
         }
 
-        .progress-bar {
+        .final-row td {
+            color: #ff0055 !important;
+            font-size: 14px;
+            text-shadow: 0 0 5px #ff0055;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #8a2be2, #ff007f);
+            color: white;
+            border: none;
+            padding: 12px 25px;
             font-size: 13px;
-            color: #888;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+            letter-spacing: 1px;
+        }
+
+        /* Final Gothic Page */
+        .final-page {
+            display: none;
+            animation: gothicGlow 1s forwards;
+        }
+
+        .gothic-text {
+            font-size: 26px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 10px #8a2be2, 0 0 20px #ff007f;
+            letter-spacing: 2px;
             margin-bottom: 10px;
         }
 
-        .mikami-box {
-            background: #ffeaa7;
-            border: 2px dashed #fdcb6e;
-            padding: 20px 15px;
-            border-radius: 20px;
-            margin-top: 15px;
-            color: #d63031;
-            font-weight: bold;
-            font-size: 18px;
+        .get-out-text {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ff003c;
+            text-shadow: 0 0 15px #ff003c;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .napoli-btn-no {
-            background-color: #d63031;
-            color: white;
-            z-index: 2;
+        .closing-text {
+            font-size: 12px;
+            color: #ffaa00;
+            margin-top: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="card" id="card">
-        <div class="progress-bar" id="stepText">Level 1/10 🤡</div>
-        <div class="emoji-header" id="emoji">🤡✨</div>
-        <h1 id="question">Are you a normal human being today?<br><span style="font-size:15px; color:#555;">(واش بعقلك اليوم ولا كالعادة؟)</span></h1>
+    <div class="glass-card" id="mainCard">
         
-        <div class="btn-container">
-            <button class="btn-yes" id="yesBtn" onclick="userSaidYes()">Ah (أه) 😇</button>
-            <button class="btn-no" id="noBtn" onmouseover="dodgeNo()" onclick="dodgeNo()">La (لا) 🤪</button>
+        <!-- FIRST STEP: SCANNER -->
+        <div id="scanStep">
+            <h1>BIOMETRIC DNA SCAN</h1>
+            <p class="sub">Hold finger to analyze molecular sequence</p>
+
+            <div class="fingerprint-wrapper" id="fpWrapper">
+                <div class="ring"></div>
+                <button class="fingerprint-btn" id="fpBtn">
+                    🖐️
+                </button>
+            </div>
+
+            <div class="instruction-text">
+                Hold your finger here to scan...
+                <span>(حط صبعك هنا وابقى ضاغط باش نديرو الـ DNA Scan)</span>
+            </div>
         </div>
 
-        <p class="darija-text" id="subtext">Try pressing NO/La if you dare... 😏</p>
+        <!-- SECOND STEP: PROFESSIONAL DNA TABLE -->
+        <div class="result-box" id="resultStep">
+            <h2 style="color: #00ffcc; font-size: 16px; margin-bottom: 10px; text-transform: uppercase;">
+                🧬 DNA SEQUENCING REPORT
+            </h2>
+
+            <table class="dna-table">
+                <thead>
+                    <tr>
+                        <th>Marker</th>
+                        <th>Sequence</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chromosome 23</td>
+                        <td>XY-9948-AX</td>
+                        <td style="color: #00ffcc;">Normal</td>
+                    </tr>
+                    <tr>
+                        <td>Brain Activity</td>
+                        <td>0.003 FPS</td>
+                        <td style="color: #ffaa00;">Critical</td>
+                    </tr>
+                    <tr>
+                        <td>Sanity Index</td>
+                        <td>NEG-404</td>
+                        <td style="color: #ffaa00;">Failed</td>
+                    </tr>
+                    <tr class="final-row">
+                        <td>FINAL RESULT</td>
+                        <td colspan="2">Sorry, Nta Zam*l 🧬💀</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="next-btn" onclick="showFinalPage()">CONTINUE 🕷️✨</button>
+        </div>
+
+        <!-- THIRD STEP: FINAL GOTHIC PAGE -->
+        <div class="final-page" id="finalStep">
+            <div style="font-size: 45px; margin-bottom: 10px;">🕸️⚡🦇</div>
+            <div class="gothic-text">UR BOY MIKAMI HERE</div>
+            <div class="get-out-text">YALAH DOR TQWD! 🖕🔥</div>
+            <div class="closing-text" id="timerText">Closing session in 3s... 🛑</div>
+            <div style="font-size: 30px; margin-top: 15px;">🔥⛓️🥀</div>
+        </div>
+
     </div>
 
     <script>
-        const stages = [
-            {
-                q: "Are you SURE you are normal? 🤨<br><span style='font-size:15px; color:#555;'>(واش كاين شي حد عاقل كينقز فـ السيتات؟)</span>",
-                emoji: "🧐❓",
-                subtext: "Stop chasing La, it hates you! 🏃‍♂️💨"
-            },
-            {
-                q: "Did you drink water today or just vibes? 🌊<br><span style='font-size:15px; color:#555;'>(واش شربتي الماء ولا غير عايش بالهوى؟)</span>",
-                emoji: "🌵💧",
-                subtext: "واش كتقلب على الصداع؟ Press Ah! 🥑"
-            },
-            {
-                q: "Be honest... do you talk to yourself? 🗣️<br><span style='font-size:15px; color:#555;'>(واش كتهضر مع راسك فـ المريا؟)</span>",
-                emoji: "🪞😳",
-                subtext: "Bro... the button is literally running away 💀"
-            },
-            {
-                q: "404: Sanity Not Found! 🤖<br><span style='font-size:15px; color:#555;'>(العقل غير موجود، حاول مجدداً)</span>",
-                emoji: "👾🔥",
-                subtext: "غير برك(ي) على Ah وهنينا! 😭"
-            },
-            {
-                q: "Why are you still trying to click La? 😂<br><span style='font-size:15px; color:#555;'>(علاش باقي كتحاول؟ راك غادي تعيا!)</span>",
-                emoji: "🏃‍♀️💨",
-                subtext: "La is faster than your Wi-Fi! ⚡"
-            },
-            {
-                q: "Okay, last chance... Are you crazy? 🤪<br><span style='font-size:15px; color:#555;'>(صافي اعترف، واش حمق(ة)؟)</span>",
-                emoji: "🤪💥",
-                subtext: "Press Ah to accept your fate! 🤝"
-            },
-            {
-                q: "You have 0.001% Patience left! ⏳<br><span style='font-size:15px; color:#555;'>(الصبر سالا، غير استسلم!)</span>",
-                emoji: "💣💥",
-                subtext: "Ah is getting BIGGER for a reason! 👀"
-            },
-            {
-                q: "Give up already! Just click Ah! 🏳️<br><span style='font-size:15px; color:#555;'>(رفعي الراية البيضاء وبركي على Ah!)</span>",
-                emoji: "🏳️😭",
-                subtext: "System overload... Press Ah! 💻"
-            },
-            {
-                q: "FINAL LEVEL: Press Ah or be stuck forever! 🔒<br><span style='font-size:15px; color:#555;'>(المرحلة الأخيرة: يا تسلّم يا تبقى حاصل هنا!)</span>",
-                emoji: "👑🔥",
-                subtext: "It's literally the only way out! 🚪"
-            }
-        ];
+        const fpBtn = document.getElementById('fpBtn');
+        const fpWrapper = document.getElementById('fpWrapper');
+        let holdTimer = null;
 
-        let count = 0;
-        let yesScale = 1;
-
-        function dodgeNo() {
-            const noBtn = document.getElementById('noBtn');
-            const yesBtn = document.getElementById('yesBtn');
-            const subtext = document.getElementById('subtext');
-            const question = document.getElementById('question');
-            const emoji = document.getElementById('emoji');
-            const stepText = document.getElementById('stepText');
-
-            noBtn.style.position = 'fixed';
-            const x = Math.random() * (window.innerWidth - 120);
-            const y = Math.random() * (window.innerHeight - 60);
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-
-            yesScale += 0.2;
-            yesBtn.style.transform = `scale(${yesScale})`;
-
-            if (count < stages.length) {
-                stepText.innerText = `Level ${count + 2}/10 🤡`;
-                question.innerHTML = stages[count].q;
-                emoji.innerText = stages[count].emoji;
-                subtext.innerHTML = stages[count].subtext;
-            } else {
-                stepText.innerText = "Level 10/10 🏆 (IMPOSSIBLE TO PRESS LA)";
-                subtext.innerText = "غير برك على Ah وصافي هني راسك 😭❤️";
-            }
-
-            count++;
+        function startHold(e) {
+            e.preventDefault();
+            fpWrapper.classList.add('holding');
+            
+            holdTimer = setTimeout(() => {
+                document.getElementById('scanStep').style.display = 'none';
+                document.getElementById('resultStep').style.display = 'block';
+            }, 2000);
         }
 
-        // واجهة الطنز + الواجهة الجديدة ديال Napoli
-        function userSaidYes() {
-            const card = document.getElementById('card');
-            card.innerHTML = `
-                <div class="emoji-header">📸🤨</div>
-                <h1 style="color: #6c5ce7;">LIES! 100% CAP! 😂</h1>
-                <p style="font-size: 16px; color: #2d3436; margin-bottom: 10px;">
-                    Nobody is normal in this generation! 💀<br>
-                    <b>شكون كادب عليك وقايل ليك راك عاقل؟ 🥑✨</b>
-                </p>
-                
-                <div class="mikami-box">
-                    <div style="font-size:20px; color:#d63031; margin-bottom:10px;">Question 2: ⚽️🔥</div>
-                    <b>Wach Napoli Zam*? ⚽️🤣</b><br>
-                    <span style="font-size:13px; color:#636e72;">(جاوب بصراحة... 😏)</span>
-
-                    <div class="btn-container" style="margin-top:15px;">
-                        <button class="btn-yes" id="napoliAhBtn" onclick="finalScreen()">Ah (أه) 💯</button>
-                        <button class="napoli-btn-no" id="napoliLaBtn" onmouseover="dodgeNapoliLa()" onclick="dodgeNapoliLa()">La (لا) 🤡</button>
-                    </div>
-                </div>
-
-                <p class="darija-text" id="napoliSubtext">Choose wisely! 👀</p>
-            `;
+        function endHold() {
+            fpWrapper.classList.remove('holding');
+            clearTimeout(holdTimer);
         }
 
-        // تحريك زر La فـ واجهة Napoli
-        let napoliAhScale = 1;
-        const napoliTexts = [
-            "راه أه بسيف عليك! 🤣",
-            "Napoli 100% YES, stop cap! 🧢",
-            "زر La كيهرب تاني حيت الجواب هو Ah 💀",
-            "غير برك على Ah وهنينا! ⚽️🔥"
-        ];
-        let napoliCount = 0;
+        // Mouse Events
+        fpBtn.addEventListener('mousedown', startHold);
+        fpBtn.addEventListener('mouseup', endHold);
+        fpBtn.addEventListener('mouseleave', endHold);
 
-        function dodgeNapoliLa() {
-            const laBtn = document.getElementById('napoliLaBtn');
-            const ahBtn = document.getElementById('napoliAhBtn');
-            const subtext = document.getElementById('napoliSubtext');
+        // Touch Events (Mobile)
+        fpBtn.addEventListener('touchstart', startHold);
+        fpBtn.addEventListener('touchend', endHold);
 
-            laBtn.style.position = 'fixed';
-            const x = Math.random() * (window.innerWidth - 120);
-            const y = Math.random() * (window.innerHeight - 60);
-            laBtn.style.left = x + 'px';
-            laBtn.style.top = y + 'px';
+        // Transition to Final Page & Auto Close
+        function showFinalPage() {
+            document.getElementById('resultStep').style.display = 'none';
+            document.getElementById('finalStep').style.display = 'block';
+            document.getElementById('mainCard').style.borderColor = '#ff007f';
 
-            napoliAhScale += 0.25;
-            ahBtn.style.transform = `scale(${napoliAhScale})`;
+            let seconds = 3;
+            const timerText = document.getElementById('timerText');
 
-            subtext.innerText = napoliTexts[napoliCount % napoliTexts.length];
-            napoliCount++;
-        }
-
-        // الواجهة الأخيرة
-        function finalScreen() {
-            const card = document.getElementById('card');
-            card.innerHTML = `
-                <div class="emoji-header">💋👩‍❤️‍👨✨</div>
-                <h1 style="color: #c9184a; font-size: 28px;">MUA AAH! 😘💋</h1>
-                <p style="font-size: 18px; color: #ff4d6d; font-weight: bold; margin-bottom: 15px;">
-                    حنا متصالحين ومعترفين دابا 💖🌸
-                </p>
-                <div style="font-size: 18px; color: #d63031; font-weight: bold;">
-                    Do you love Mikami? 🥺👉👈💖<br>
-                    <span style="font-size: 15px; color: #6c5ce7;">(ضروري تكون كاتبغيه دابا 😜)</span>
-                </div>
-                <div style="font-size: 40px; margin-top: 15px;">🤣🤌💖🔥</div>
-            `;
+            const countdown = setInterval(() => {
+                seconds--;
+                if (seconds > 0) {
+                    timerText.innerText = `Closing session in ${seconds}s... 🛑`;
+                } else {
+                    clearInterval(countdown);
+                    // حاول يسد الصفحة
+                    window.close();
+                    
+                    // إيلا المتصفح منع الإغلاق، كيرجع الصفحة كحلة فارغة (Self-Destruct UI)
+                    document.body.innerHTML = `
+                        <div style="color: #ff0055; font-family: monospace; font-size: 20px;">
+                            [SESSION TERMINATED] 💀<br>
+                            <span style="font-size:14px; color:#888;">System Closed by Mikami.</span>
+                        </div>
+                    `;
+                    document.body.style.background = '#000';
+                }
+            }, 1000);
         }
     </script>
 </body>
