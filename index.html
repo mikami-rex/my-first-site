@@ -1,358 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biometric DNA Analysis ⚡ MIKAMI</title>
+    <title>إلى هاجر ❤️</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Cinzel', 'Courier New', Courier, monospace;
-            user-select: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: #09090e;
-            background-image: radial-gradient(circle at center, #1a0826 0%, #050508 100%);
-            color: #e0e0e0;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
-            text-align: center;
-            padding: 20px 10px;
+            padding: 20px;
         }
 
-        /* Freedom Core & Gothic Glass Container */
-        .glass-card {
-            background: rgba(18, 10, 26, 0.85);
-            backdrop-filter: blur(12px);
-            border: 2px solid #8a2be2;
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3), inset 0 0 15px rgba(255, 0, 127, 0.2);
-            padding: 35px 20px;
-            border-radius: 25px;
-            max-width: 480px;
-            width: 95%;
-            position: relative;
-            transition: all 0.5s ease;
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(5px);
         }
 
         h1 {
-            font-size: 19px;
-            color: #ff007f;
-            text-shadow: 0 0 10px #ff007f;
-            margin-bottom: 8px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            color: #d63384;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
         }
 
-        p.sub {
-            font-size: 12px;
-            color: #a0a0c0;
-            margin-bottom: 25px;
-        }
-
-        /* Fingerprint Button */
-        .fingerprint-wrapper {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .fingerprint-btn {
-            width: 100px;
-            height: 100px;
-            background: #12051d;
-            border: 2px solid #ff007f;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .heart-icon {
             font-size: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-            outline: none;
+            color: #e63946;
+            animation: beat 1.2s infinite alternate;
+        }
+
+        @keyframes beat {
+            to { transform: scale(1.15); }
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .highlight {
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
             position: relative;
-            z-index: 2;
         }
 
-        .fingerprint-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 0 35px rgba(255, 0, 127, 0.8);
-        }
-
-        /* Circular Progress Ring */
-        .ring {
-            position: absolute;
-            width: 118px;
-            height: 118px;
-            border-radius: 50%;
-            border: 4px solid transparent;
-            border-top-color: #8a2be2;
-            border-right-color: #ff007f;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .holding .ring {
-            opacity: 1;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .instruction-text {
-            font-size: 13px;
-            color: #ff007f;
-            font-weight: bold;
-            line-height: 1.5;
-        }
-
-        .instruction-text span {
-            display: block;
-            color: #8a2be2;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-
-        /* Professional DNA Table */
-        .result-box {
-            display: none;
-            animation: fadeIn 0.8s forwards;
-        }
-
-        .dna-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            font-size: 13px;
-            background: rgba(10, 5, 20, 0.6);
-            border: 1px solid #8a2be2;
-            border-radius: 10px;
-            overflow: hidden;
-            text-align: left;
-        }
-
-        .dna-table th, .dna-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-        }
-
-        .dna-table th {
-            background: rgba(138, 43, 226, 0.3);
-            color: #ff007f;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 1px;
-        }
-
-        .dna-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .final-row {
-            background: rgba(255, 0, 60, 0.2);
-            font-weight: bold;
-        }
-
-        .final-row td {
-            color: #ff0055 !important;
-            font-size: 14px;
-            text-shadow: 0 0 5px #ff0055;
-        }
-
-        .next-btn {
-            background: linear-gradient(135deg, #8a2be2, #ff007f);
-            color: white;
-            border: none;
+        button {
             padding: 12px 25px;
-            font-size: 13px;
-            font-weight: bold;
-            border-radius: 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
             cursor: pointer;
-            margin-top: 15px;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
-            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-weight: bold;
         }
 
-        /* Final Gothic Page */
-        .final-page {
+        .btn-yes {
+            background-color: #28a745;
+            color: white;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-yes:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-no {
+            background-color: #dc3545;
+            color: white;
+            position: relative;
+        }
+
+        #response-message {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #d63384;
+            font-size: 1.2rem;
             display: none;
-            animation: gothicGlow 1s forwards;
-        }
-
-        .gothic-text {
-            font-size: 26px;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 0 0 10px #8a2be2, 0 0 20px #ff007f;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .get-out-text {
-            font-size: 24px;
-            font-weight: 900;
-            color: #ff003c;
-            text-shadow: 0 0 15px #ff003c;
-            margin-top: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .closing-text {
-            font-size: 12px;
-            color: #ffaa00;
-            margin-top: 15px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="glass-card" id="mainCard">
+    <div class="card">
+        <div class="heart-icon">❤️</div>
+        <h1>إلى عزيزتي هاجر</h1>
         
-        <!-- FIRST STEP: SCANNER -->
-        <div id="scanStep">
-            <h1>BIOMETRIC DNA SCAN</h1>
-            <p class="sub">Hold finger to analyze molecular sequence</p>
+        <p>
+            عارف راسي قصرت ولا أخطأت، ومكانش قصدي نضايقك أبداً.<br>
+            مكانتك عندي كبيرة بزاف، وما قادرتش نتخيل أيامي بلا بيك.<br>
+            <span class="highlight">سمحي ليا بزاف يا هاجر..</span> أسراري وراحتي كلها معاك، وحبي ليك كيزيد كل نهار.
+        </p>
 
-            <div class="fingerprint-wrapper" id="fpWrapper">
-                <div class="ring"></div>
-                <button class="fingerprint-btn" id="fpBtn">
-                    🖐️
-                </button>
-            </div>
+        <p>هل تقبلين اعتذاري ونفتحو صفحة جديدة؟ ✨</p>
 
-            <div class="instruction-text">
-                Hold your finger here to scan...
-                <span>(حط صبعك هنا وابقى ضاغط باش نديرو الـ DNA Scan)</span>
-            </div>
+        <div class="buttons">
+            <button class="btn-yes" onclick="acceptApology()">سامحتك ❤️</button>
+            <button class="btn-no" id="noBtn" onmouseover="moveButton()">لا 😜</button>
         </div>
 
-        <!-- SECOND STEP: PROFESSIONAL DNA TABLE -->
-        <div class="result-box" id="resultStep">
-            <h2 style="color: #00ffcc; font-size: 16px; margin-bottom: 10px; text-transform: uppercase;">
-                🧬 DNA SEQUENCING REPORT
-            </h2>
-
-            <table class="dna-table">
-                <thead>
-                    <tr>
-                        <th>Marker</th>
-                        <th>Sequence</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Chromosome 23</td>
-                        <td>XY-9948-AX</td>
-                        <td style="color: #00ffcc;">Normal</td>
-                    </tr>
-                    <tr>
-                        <td>Brain Activity</td>
-                        <td>0.003 FPS</td>
-                        <td style="color: #ffaa00;">Critical</td>
-                    </tr>
-                    <tr>
-                        <td>Sanity Index</td>
-                        <td>NEG-404</td>
-                        <td style="color: #ffaa00;">Failed</td>
-                    </tr>
-                    <tr class="final-row">
-                        <td>FINAL RESULT</td>
-                        <td colspan="2">Sorry, Nta Zam*l 🧬💀</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <button class="next-btn" onclick="showFinalPage()">CONTINUE 🕷️✨</button>
-        </div>
-
-        <!-- THIRD STEP: FINAL GOTHIC PAGE -->
-        <div class="final-page" id="finalStep">
-            <div style="font-size: 45px; margin-bottom: 10px;">🕸️⚡🦇</div>
-            <div class="gothic-text">UR BOY MIKAMI HERE</div>
-            <div class="get-out-text">YALAH DOR TQWD! 🖕🔥</div>
-            <div class="closing-text" id="timerText">Closing session in 3s... 🛑</div>
-            <div style="font-size: 30px; margin-top: 15px;">🔥⛓️🥀</div>
-        </div>
-
+        <div id="response-message"></div>
     </div>
 
     <script>
-        const fpBtn = document.getElementById('fpBtn');
-        const fpWrapper = document.getElementById('fpWrapper');
-        let holdTimer = null;
-
-        function startHold(e) {
-            e.preventDefault();
-            fpWrapper.classList.add('holding');
+        function acceptApology() {
+            const message = document.getElementById('response-message');
+            message.style.display = 'block';
+            message.innerHTML = "شكراً أهاجر! ❤️ نوعدك ما غاديش نعود نزعلك مرة أخرى ✨";
             
-            holdTimer = setTimeout(() => {
-                document.getElementById('scanStep').style.display = 'none';
-                document.getElementById('resultStep').style.display = 'block';
-            }, 2000);
+            // إخفاء الأزرار بعد القبول
+            document.querySelector('.buttons').style.display = 'none';
         }
 
-        function endHold() {
-            fpWrapper.classList.remove('holding');
-            clearTimeout(holdTimer);
-        }
-
-        // Mouse Events
-        fpBtn.addEventListener('mousedown', startHold);
-        fpBtn.addEventListener('mouseup', endHold);
-        fpBtn.addEventListener('mouseleave', endHold);
-
-        // Touch Events (Mobile)
-        fpBtn.addEventListener('touchstart', startHold);
-        fpBtn.addEventListener('touchend', endHold);
-
-        // Transition to Final Page & Auto Close
-        function showFinalPage() {
-            document.getElementById('resultStep').style.display = 'none';
-            document.getElementById('finalStep').style.display = 'block';
-            document.getElementById('mainCard').style.borderColor = '#ff007f';
-
-            let seconds = 3;
-            const timerText = document.getElementById('timerText');
-
-            const countdown = setInterval(() => {
-                seconds--;
-                if (seconds > 0) {
-                    timerText.innerText = `Closing session in ${seconds}s... 🛑`;
-                } else {
-                    clearInterval(countdown);
-                    // حاول يسد الصفحة
-                    window.close();
-                    
-                    // إيلا المتصفح منع الإغلاق، كيرجع الصفحة كحلة فارغة (Self-Destruct UI)
-                    document.body.innerHTML = `
-                        <div style="color: #ff0055; font-family: monospace; font-size: 20px;">
-                            [SESSION TERMINATED] 💀<br>
-                            <span style="font-size:14px; color:#888;">System Closed by Mikami.</span>
-                        </div>
-                    `;
-                    document.body.style.background = '#000';
-                }
-            }, 1000);
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            // تحريك زر "لا" بشكل عشوائي عشان ما تقدرش تضغط عليه
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
         }
     </script>
 </body>
