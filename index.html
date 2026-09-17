@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إلى هاجر ❤️</title>
+    <title>إلى هاجر</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +13,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            background-color: #f4f6f9;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,42 +22,27 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background: #ffffff;
+            padding: 35px 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             text-align: center;
-            max-width: 500px;
+            max-width: 480px;
             width: 100%;
-            backdrop-filter: blur(5px);
+            border: 1px solid #e1e8ed;
         }
 
         h1 {
-            color: #d63384;
-            font-size: 2.2rem;
+            color: #2c3e50;
+            font-size: 1.8rem;
             margin-bottom: 15px;
         }
 
-        .heart-icon {
-            font-size: 50px;
-            color: #e63946;
-            animation: beat 1.2s infinite alternate;
-        }
-
-        @keyframes beat {
-            to { transform: scale(1.15); }
-        }
-
         p {
-            color: #4a4a4a;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin: 20px 0;
-        }
-
-        .highlight {
-            color: #d63384;
-            font-weight: bold;
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin: 15px 0;
         }
 
         .buttons {
@@ -65,41 +50,38 @@
             justify-content: center;
             gap: 15px;
             margin-top: 25px;
-            position: relative;
         }
 
         button {
-            padding: 12px 25px;
+            padding: 10px 22px;
             font-size: 1rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
+            transition: background 0.2s;
+            font-weight: 600;
         }
 
         .btn-yes {
-            background-color: #28a745;
+            background-color: #25d366;
             color: white;
-            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
         }
 
         .btn-yes:hover {
-            background-color: #218838;
-            transform: translateY(-2px);
+            background-color: #1ebc57;
         }
 
         .btn-no {
-            background-color: #dc3545;
+            background-color: #e74c3c;
             color: white;
             position: relative;
         }
 
         #response-message {
             margin-top: 20px;
-            font-weight: bold;
-            color: #d63384;
-            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
             display: none;
         }
     </style>
@@ -107,20 +89,18 @@
 <body>
 
     <div class="card">
-        <div class="heart-icon">❤️</div>
-        <h1>إلى عزيزتي هاجر</h1>
+        <h1>السموحة أ هاجر 🙏</h1>
         
         <p>
-            عارف راسي قصرت ولا أخطأت، ومكانش قصدي نضايقك أبداً.<br>
-            مكانتك عندي كبيرة بزاف، وما قادرتش نتخيل أيامي بلا بيك.<br>
-            <span class="highlight">سمحي ليا بزاف يا هاجر..</span> أسراري وراحتي كلها معاك، وحبي ليك كيزيد كل نهار.
+            عارف راسي غلطت ولا تصرفت بشي طريقة ماشي هي هذيك، ومكانش قصدي نضايقك كاع.<br><br>
+            عزيزة عليا وما بغيتش يبقى بيناتنا سوء فهم. حقك عليا وسامحي ليا!
         </p>
 
-        <p>هل تقبلين اعتذاري ونفتحو صفحة جديدة؟ ✨</p>
+        <p>صافي صافية لبن؟ 🤝</p>
 
         <div class="buttons">
-            <button class="btn-yes" onclick="acceptApology()">سامحتك ❤️</button>
-            <button class="btn-no" id="noBtn" onmouseover="moveButton()">لا 😜</button>
+            <button class="btn-yes" onclick="acceptApology()">صافي مسامحة 👍</button>
+            <button class="btn-no" id="noBtn" onmouseover="moveButton()">باقي مقلقة 😜</button>
         </div>
 
         <div id="response-message"></div>
@@ -130,17 +110,14 @@
         function acceptApology() {
             const message = document.getElementById('response-message');
             message.style.display = 'block';
-            message.innerHTML = "شكراً أهاجر! ❤️ نوعدك ما غاديش نعود نزعلك مرة أخرى ✨";
-            
-            // إخفاء الأزرار بعد القبول
+            message.innerHTML = "شكراً أ هاجر! الله يعزك ✨";
             document.querySelector('.buttons').style.display = 'none';
         }
 
         function moveButton() {
             const noBtn = document.getElementById('noBtn');
-            // تحريك زر "لا" بشكل عشوائي عشان ما تقدرش تضغط عليه
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 50);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50);
             
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
